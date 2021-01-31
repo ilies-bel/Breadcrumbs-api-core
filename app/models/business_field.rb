@@ -1,2 +1,0 @@
-class BusinessField < ApplicationRecord
-end

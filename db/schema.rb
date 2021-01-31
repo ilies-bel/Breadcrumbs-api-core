@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_172535) do
+ActiveRecord::Schema.define(version: 2021_01_30_204420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "interview_milestone_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "note"
+    t.boolean "is_confirmed"
+    t.boolean "is_completed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["interview_milestone_id"], name: "index_appointments_on_interview_milestone_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
 
   create_table "availabilities", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -31,20 +45,20 @@ ActiveRecord::Schema.define(version: 2021_01_30_172535) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "interview_milestons", force: :cascade do |t|
+  create_table "interview_milestones", force: :cascade do |t|
+    t.bigint "interview_process_id", null: false
     t.bigint "interview_type_id", null: false
+    t.string "milestone_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["interview_type_id"], name: "index_interview_milestons_on_interview_type_id"
+    t.index ["interview_process_id"], name: "index_interview_milestones_on_interview_process_id"
+    t.index ["interview_type_id"], name: "index_interview_milestones_on_interview_type_id"
   end
 
   create_table "interview_processes", force: :cascade do |t|
-    t.bigint "interview_mileston_id", null: false
     t.string "process_name"
-    t.integer "ranking"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["interview_mileston_id"], name: "index_interview_processes_on_interview_mileston_id"
   end
 
   create_table "interview_types", force: :cascade do |t|
@@ -52,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_172535) do
     t.string "title"
     t.string "description"
     t.integer "estimated_time_length"
+    t.integer "min_time_before_next"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["business_field_id"], name: "index_interview_types_on_business_field_id"
@@ -69,8 +84,10 @@ ActiveRecord::Schema.define(version: 2021_01_30_172535) do
     t.index ["mail"], name: "index_users_on_mail", unique: true
   end
 
+  add_foreign_key "appointments", "interview_milestones"
+  add_foreign_key "appointments", "users"
   add_foreign_key "availabilities", "users"
-  add_foreign_key "interview_milestons", "interview_types"
-  add_foreign_key "interview_processes", "interview_milestons"
+  add_foreign_key "interview_milestones", "interview_processes"
+  add_foreign_key "interview_milestones", "interview_types"
   add_foreign_key "interview_types", "business_fields"
 end

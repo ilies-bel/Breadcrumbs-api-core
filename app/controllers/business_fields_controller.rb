@@ -1,2 +1,0 @@
-class BusinessFieldsController < ApplicationController
-end
