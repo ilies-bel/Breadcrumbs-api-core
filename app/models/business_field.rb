@@ -1,0 +1,2 @@
+class BusinessField < ApplicationRecord
+end

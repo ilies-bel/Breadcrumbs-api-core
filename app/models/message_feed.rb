@@ -1,0 +1,2 @@
+class MessageFeed < ApplicationRecord
+end

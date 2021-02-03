@@ -1,0 +1,2 @@
+class InterviewProcess < ApplicationRecord
+end
