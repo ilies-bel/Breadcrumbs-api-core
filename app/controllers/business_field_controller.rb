@@ -1,0 +1,2 @@
+class BusinessFieldController < ApplicationController
+end
