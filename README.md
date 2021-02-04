@@ -11,5 +11,5 @@ migrate the database
 Start the server :
 ``rails s -b 127.0.0.1 -p 3000 -e development``
 
-see the routes available :
-``rails routes``
+Launch all the tests :
+``bundle exec rspec``

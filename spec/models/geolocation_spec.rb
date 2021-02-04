@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Geolocation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Geolocation model validation' do
+    it { should belong_to(:address)}
+    it { should have_many(:resting_places)}
+
+    it { should validate_presence_of(:latitude) }
+    it { should validate_presence_of(:longitude) }
+    it { should validate_presence_of(:created_at) }
+    it { should validate_presence_of(:updated_at) }
+  end
 end

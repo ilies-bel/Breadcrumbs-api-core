@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_220959) do
+ActiveRecord::Schema.define(version: 2021_02_04_164820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
     t.boolean "is_completed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "collaborator_id"
     t.index ["candidate_id"], name: "index_appointments_on_candidate_id"
     t.index ["interview_milestone_id"], name: "index_appointments_on_interview_milestone_id"
     t.index ["meeting_room_id"], name: "index_appointments_on_meeting_room_id"
@@ -80,12 +81,12 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
 
   create_table "candidates", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "interview_processe_id", null: false
+    t.bigint "interview_process_id", null: false
     t.bigint "business_title_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["business_title_id"], name: "index_candidates_on_business_title_id"
-    t.index ["interview_processe_id"], name: "index_candidates_on_interview_processe_id"
+    t.index ["interview_process_id"], name: "index_candidates_on_interview_process_id"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -101,14 +102,14 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.string "social_network"
     t.string "title"
     t.string "link"
     t.integer "logo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_contacts_on_users_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "geolocations", force: :cascade do |t|
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
   create_table "offices", force: :cascade do |t|
     t.bigint "address_id", null: false
     t.string "name"
-    t.boolean "isHeadquarters"
+    t.boolean "is_headquarters"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["address_id"], name: "index_offices_on_address_id"
@@ -212,6 +213,8 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
   create_table "social_posts", force: :cascade do |t|
     t.datetime "posted_date"
     t.string "social_network"
+    t.string "title"
+    t.string "headline"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -242,17 +245,18 @@ ActiveRecord::Schema.define(version: 2021_02_03_220959) do
   add_foreign_key "ambassadors", "collaborators"
   add_foreign_key "ambassadors", "message_feeds"
   add_foreign_key "appointments", "candidates"
+  add_foreign_key "appointments", "collaborators"
   add_foreign_key "appointments", "interview_milestones"
   add_foreign_key "appointments", "meeting_rooms"
   add_foreign_key "availabilities", "collaborators"
   add_foreign_key "business_titles", "business_fields"
   add_foreign_key "candidates", "business_titles"
-  add_foreign_key "candidates", "interview_processes", column: "interview_processe_id"
+  add_foreign_key "candidates", "interview_processes"
   add_foreign_key "candidates", "users"
   add_foreign_key "collaborators", "business_titles"
   add_foreign_key "collaborators", "offices"
   add_foreign_key "collaborators", "users"
-  add_foreign_key "contacts", "users", column: "users_id"
+  add_foreign_key "contacts", "users"
   add_foreign_key "geolocations", "addresses"
   add_foreign_key "interview_milestones", "interview_processes"
   add_foreign_key "interview_milestones", "interview_types"

@@ -3,4 +3,6 @@ class BusinessTitle < ApplicationRecord
 
   has_one :candidate
   has_one :collaborator
+
+  validates_presence_of :title , :description , :created_at , :updated_at
 end
