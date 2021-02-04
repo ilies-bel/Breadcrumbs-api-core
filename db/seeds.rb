@@ -8,8 +8,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-processes = InterviewProcess.create([{ process_name: 'My first process' },
+interview_processes = InterviewProcess.create!([{ process_name: 'My first process' },
                                      { process_name: 'My second process' },
                                      { process_name: 'My third process' }])
 
-InterviewMilestone.create(interview_process_id: processes.first, interview_type_id: 1, milestone_name: 'milestone')
+business_field = BusinessField.create!({field_name: "Computer science", description: "Doing stuff with computers"})
+
+interview_type = InterviewType.create!({ business_field: business_field,  title: "Entretien telephonique" , description: "A quick call"})
+
+InterviewMilestone.create!( [{interview_process: interview_processes.first, interview_type: interview_type, milestone_name: 'milestone' }] )

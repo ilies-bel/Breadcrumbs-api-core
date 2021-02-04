@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe InterviewProcess, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'InterviewProcess model validation' do
+    it { should validate_presence_of(:process_name) }
+  end
 end

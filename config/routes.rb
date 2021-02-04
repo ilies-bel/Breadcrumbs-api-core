@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
     resources :processes do
-      resources :milestones
+      resources :milestone
     end
   end
 

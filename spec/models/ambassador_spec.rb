@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Ambassador, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Theme model validation' do
+    it { should validate_presence_of(:catch_phrase) }
+    it { should validate_presence_of(:description) }
+  end
 end
