@@ -4,5 +4,5 @@ class Office < ApplicationRecord
   has_many :resting_places
   has_many :meeting_rooms
 
-  validates_presence_of  :is_headquarters ,:name,  :created_at , :updated_at
+  validates_presence_of  :is_headquarters ,:name
 end

@@ -1,41 +1,43 @@
 class ThemeController < ApplicationController
 
   before_action :set_theme, only: [:show, :update, :destroy]
+  skip_before_action :verify_authenticity_token # TODO remove
 
-  # GET /todos
+  # GET /theme
   def index
-    @theme = Theme.all
-    json_response(@theme)
+    @themes = Theme.all
+    json_response(@themes)
   end
 
-  # POST /todos
+  # POST /theme
   def create
     @theme = Theme.create!(theme_params)
     json_response(@theme, :created)
   end
 
-  # GET /todos/:id
+  # GET /theme/:id
   def show
     json_response(@theme)
   end
 
-  # PUT /todos/:id
+  # PUT /theme/:id
   def update
     @theme.update(theme_params)
     head :no_content
   end
 
-  # DELETE /todos/:id
+  # DELETE /theme/:id
   def destroy
     @theme.destroy
     head :no_content
   end
 
+
   private
 
   def theme_params
     # whitelist params
-    params.permit(:primary_color, :secondary_color, :splash_logo_url, :created_by)
+    params.permit(:primary_color, :secondary_color, :splash_logo_url, :logo_url)
   end
 
   def set_theme

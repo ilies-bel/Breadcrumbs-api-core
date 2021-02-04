@@ -10,7 +10,6 @@ RSpec.describe Collaborator, type: :model do
     it { should have_many(:appointments)}
 
     it { should validate_presence_of(:business_title) }
-    it { should validate_presence_of(:created_at) }
-    it { should validate_presence_of(:updated_at) }
+
   end
 end

@@ -9,7 +9,5 @@ RSpec.describe Candidate, type: :model do
     it { should have_many(:appointments)}
 
 
-    it { should validate_presence_of(:updated_at) }
-    it { should validate_presence_of(:created_at) }
   end
 end

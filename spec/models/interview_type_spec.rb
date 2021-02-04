@@ -11,7 +11,6 @@ RSpec.describe InterviewType, type: :model do
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:estimated_time_length) }
     it { should validate_presence_of(:min_time_before_next) }
-    it { should validate_presence_of(:created_at) }
-    it { should validate_presence_of(:updated_at) }
+
   end
 end

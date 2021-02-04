@@ -7,7 +7,6 @@ RSpec.describe Ambassador, type: :model do
 
     it { should validate_presence_of(:catch_phrase) }
     it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:created_at) }
-    it { should validate_presence_of(:updated_at) }
+
   end
 end

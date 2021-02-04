@@ -8,8 +8,7 @@ RSpec.describe MeetingRoom, type: :model do
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:how_do_i_get_there) }
-    it { should validate_presence_of(:updated_at) }
-    it { should validate_presence_of(:created_at) }
+
 
   end
 end

@@ -4,5 +4,5 @@ class InterviewMilestone < ApplicationRecord
 
   has_one :appointment
 
-  validates_presence_of :milestone_name , :created_at ,:updated_at
+  validates_presence_of :milestone_name 
 end
