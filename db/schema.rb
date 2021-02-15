@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_164820) do
+ActiveRecord::Schema.define(version: 2021_02_14_152830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 2021_02_04_164820) do
     t.string "headline"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -231,15 +232,23 @@ ActiveRecord::Schema.define(version: 2021_02_04_164820) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "profile_picture_id"
-    t.string "mail"
-    t.string "role"
-    t.boolean "push_notification"
-    t.boolean "mail_notification"
-    t.string "token"
+    t.string "profile_picture"
+    t.integer "role", default: 0
+    t.boolean "push_notification", default: false
+    t.boolean "mail_notification", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["mail"], name: "index_users_on_mail", unique: true
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "ambassadors", "collaborators"
