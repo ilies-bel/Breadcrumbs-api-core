@@ -1,7 +1,6 @@
 class ThemeController < ApplicationController
 
   before_action :set_theme, only: [:show, :update, :destroy]
-  skip_before_action :verify_authenticity_token # TODO remove
 
   # GET /theme
   def index

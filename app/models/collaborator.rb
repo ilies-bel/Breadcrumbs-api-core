@@ -6,5 +6,5 @@ class Collaborator < ApplicationRecord
   has_one :ambassador
   has_many :appointments
 
-  validates_presence_of  :business_title
+  validates_presence_of :user
 end
