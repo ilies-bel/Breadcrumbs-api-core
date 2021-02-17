@@ -5,6 +5,8 @@ services:
     environment:
       - POSTGRES_DB=Breadcrumbs_api_core_development
       - POSTGRES_PASSWORD=root
+    #ports:
+    #  - "5432:5432"
     restart: always
   breadcrumbs-api-core:
     build: .

@@ -12,11 +12,12 @@ COPY Gemfile.lock /project/Gemfile.lock
 RUN bundle install
 COPY . /project
 
-RUN rails db:migrate
-RUN rails db:seed
+
 
 EXPOSE 3000
 
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
 
+#RUN rails db:migrate
+#RUN rails db:seed
 

@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-
-
 users = User.create!([
                        {
                          first_name: 'candidate',
