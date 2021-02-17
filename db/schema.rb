@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_152830) do
     t.boolean "mail_notification", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email", default: "", null: false
+    t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
