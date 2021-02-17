@@ -4,9 +4,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable , :trackable, :validatable
 
-  enum role: { candidate: 0, collaborator: 1, admin: 2 }
+  enum role: { candidate:0, collaborator:1, supervisor:2, ambassador:3, admin:4 }
 
 
   def generate_jwt

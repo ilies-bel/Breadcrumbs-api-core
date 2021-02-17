@@ -8,8 +8,12 @@ gem 'rails', '~> 6.1.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 
+# Authentification
 gem 'devise'
 gem 'jwt'
+
+# Authorization
+gem 'cancancan'
 
 
 

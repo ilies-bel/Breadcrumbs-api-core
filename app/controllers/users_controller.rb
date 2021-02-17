@@ -1,7 +1,8 @@
-class UsersController < ApplicationController
+# frozen_string_literal: true
 
+class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :current_user, only: [:show, :update]
+  before_action :current_user, only: %i[show update]
 
   def show
     json_response(@current_user)
@@ -18,8 +19,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit( :password, :first_name,:last_name,:profile_picture, :push_notification, :mail_notification )
+    params.require(:user).permit(:password, :first_name, :last_name, :profile_picture, :push_notification,
+                                 :mail_notification)
   end
-
-
 end
