@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   scope '/manage' do
     resources :manage_collaborators, path: 'collaborators'
+    resources :manage_processes, path: 'processes'
+    resources :manage_milestones, path: 'milestones'
+
   end
 
 

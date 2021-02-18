@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_152830) do
+ActiveRecord::Schema.define(version: 2021_02_18_190049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_152830) do
     t.string "milestone_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "finished"
     t.index ["interview_process_id"], name: "index_interview_milestones_on_interview_process_id"
     t.index ["interview_type_id"], name: "index_interview_milestones_on_interview_type_id"
   end
@@ -238,7 +239,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_152830) do
     t.boolean "mail_notification", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "email", null: false
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -1,6 +1,8 @@
 class ThemeController < ApplicationController
 
   before_action :set_theme, only: [:show, :update, :destroy]
+  # TODO exclude candidates
+
 
   # GET /theme
   def index
