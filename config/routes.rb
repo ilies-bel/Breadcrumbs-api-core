@@ -17,8 +17,10 @@ Rails.application.routes.draw do
 
   scope '/manage' do
     resources :manage_collaborators, path: 'collaborators'
+
     resources :manage_processes, path: 'processes'
     resources :manage_milestones, path: 'milestones'
+    get '/processes/:id/milestones', to: 'manage_milestones#show_by_process'
 
   end
 
