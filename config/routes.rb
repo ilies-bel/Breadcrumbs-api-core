@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: :sessions },
+
+  devise_for :users,
+             controllers: { sessions: :sessions,
+                            :registrations => "users/registrations"},
              path_names: { sign_in: :login }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :process do
+  resources :processes do
     resources :milestone
   end
 
@@ -19,11 +22,19 @@ Rails.application.routes.draw do
 
   end
 
+  resources :interview_type
+
+
+  resources :business_fields
+
+
+  resources :business_titles
+
 
   resources :tips
 
   resources :availability
 
-  resource :user, only: %i[show update]
+  resource :users, only: %i[show update]
 
 end
