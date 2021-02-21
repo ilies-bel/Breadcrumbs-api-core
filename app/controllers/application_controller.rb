@@ -15,6 +15,17 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def token_decode (token)
+    begin
+      JWT.decode(token, Rails.application.secrets.secret_key_base).first
+
+    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
+      json_response(json: { errors: user.errors }, status: :indecipherable_data)
+    end
+  end
+
+
+
   def underscore_params!
     params.deep_transform_keys!(&:underscore)
   end

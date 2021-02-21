@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users,
-             controllers: { sessions: :sessions,
+             controllers: { :sessions => "users/sessions",
                             :registrations => "users/registrations"},
              path_names: { sign_in: :login }
 
@@ -13,16 +13,25 @@ Rails.application.routes.draw do
 
   resources :theme
 
-  resources :collaborator
+  resources :collaborators
 
-  scope '/manage' do
+  namespace :manage do
+
+    resources :manage_candidates, path: 'candidates'
+    post '/candidates/invite', to: 'manage_candidates#invite'
+
     resources :manage_collaborators, path: 'collaborators'
+    post '/collaborators/invite', to: 'manage_collaborators#invite'
+
 
     resources :manage_processes, path: 'processes'
+    resources :manage_collaborators, path: 'collaborators'
     resources :manage_milestones, path: 'milestones'
     get '/processes/:id/milestones', to: 'manage_milestones#show_by_process'
 
   end
+
+
 
   resources :interview_type
 
@@ -37,6 +46,13 @@ Rails.application.routes.draw do
 
   resources :availability
 
-  resource :users, only: %i[show update]
+  resource :users do
+    post '/invite_candidate', to: 'users#invite_candidate'
+
+  end
+
+
+
+  # TODO add "only" for better granularity
 
 end

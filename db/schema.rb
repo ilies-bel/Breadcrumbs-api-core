@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_190049) do
   create_table "candidates", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "interview_process_id", null: false
-    t.bigint "business_title_id", null: false
+    t.bigint "business_title_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["business_title_id"], name: "index_candidates_on_business_title_id"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_190049) do
 
   create_table "collaborators", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "business_title_id", null: false
-    t.bigint "office_id", null: false
+    t.bigint "business_title_id"
+    t.bigint "office_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["business_title_id"], name: "index_collaborators_on_business_title_id"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_190049) do
     t.string "first_name"
     t.string "last_name"
     t.string "profile_picture"
-    t.integer "role", default: 0
+    t.integer "role"
     t.boolean "push_notification", default: false
     t.boolean "mail_notification", default: false
     t.datetime "created_at", precision: 6, null: false
