@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class SessionsController < Devise::SessionsController
+class Users::SessionsController < Devise::SessionsController
+
   def create
     user = User.find_by_email(sign_in_params[:email])
 
@@ -10,4 +11,5 @@ class SessionsController < Devise::SessionsController
       json_response(json: { errors: { 'email or password' => ['is invalid'] } }, status: :unprocessable_entity)
     end
   end
+
 end
