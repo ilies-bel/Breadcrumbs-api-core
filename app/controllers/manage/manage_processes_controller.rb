@@ -1,4 +1,4 @@
-class ManageProcessesController < ApplicationController
+class Manage::ManageProcessesController < ApplicationController
   before_action :set_process, only: [:show, :update, :destroy]
 
 
@@ -8,26 +8,25 @@ class ManageProcessesController < ApplicationController
     json_response(@processes)
   end
 
-  # POST /theme
+
+  def show
+    json_response(@process)
+  end
+
+
   def create
     @process = InterviewProcess.create!(process_params)
     json_response(@process, :created)
   end
 
-  # GET /theme/:id
-  def show
-    json_response(@process)
-  end
 
-  # PUT /theme/:id
+
   def update
     @process.update(process_params)
     head :no_content
   end
 
-  # DELETE /theme/:id
   def destroy
-    InterviewMilestone.find_by_interview_process_id(params[:id]).destroy!
     @process.destroy
   end
 

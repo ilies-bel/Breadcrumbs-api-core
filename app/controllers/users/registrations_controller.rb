@@ -20,13 +20,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
 
 
-    @business_title = @decoded_token['business_title_id']
+    resource.role = @role
+    resource.save
 
+    @business_title = @decoded_token['business_title_id']
 
     case @role
     when 'candidate'
 
       @process_id = @decoded_token['process_id']
+
       @new_candidate = @user.create_candidate(interview_process_id: @process_id, business_title_id: @business_title)
 
     when 'collaborator'
@@ -34,8 +37,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @office_id = @decoded_token['office_id']
       @new_collaborator = @user.create_collaborator(office_id: @office_id, business_title_id: @business_title)
 
-
-      #@user.build_collaborator(business_title_id: :@user_business_title, office_id: @user_office_id )
     when 'supervisor'
       #resource.role = 2
     when 'ambassador'
@@ -45,7 +46,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
 
     end
-
 
 
   end

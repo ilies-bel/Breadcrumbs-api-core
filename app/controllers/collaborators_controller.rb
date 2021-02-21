@@ -1,4 +1,4 @@
-class CollaboratorController < ApplicationController
+class CollaboratorsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collaborator, only: %i[update destroy]
 

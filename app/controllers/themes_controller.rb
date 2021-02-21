@@ -1,4 +1,4 @@
-class ThemeController < ApplicationController
+class ThemesController < ApplicationController
 
   before_action :set_theme, only: [:show, :update, :destroy]
   # TODO exclude candidates

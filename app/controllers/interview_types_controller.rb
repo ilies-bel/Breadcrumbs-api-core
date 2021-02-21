@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InterviewTypeController < ApplicationController
+class InterviewTypesController < ApplicationController
   before_action :set_interview_type, only: %i[show update destroy]
 
   # GET /theme

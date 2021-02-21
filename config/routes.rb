@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :milestone
   end
 
-  resources :theme
+  resources :themes
 
   resources :collaborators
 
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :interview_type
+  resources :interview_types
 
 
   resources :business_fields
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   resources :tips
 
-  resources :availability
+  resources :availabilities
 
   resource :users do
     post '/invite_candidate', to: 'users#invite_candidate'
