@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_190049) do
   end
 
   create_table "interview_milestones", force: :cascade do |t|
-    t.bigint "interview_process_id"
+    t.bigint "interview_process_id", null: false
     t.bigint "interview_type_id"
     t.string "milestone_name"
     t.datetime "created_at", precision: 6, null: false
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_190049) do
 
   create_table "interview_processes", force: :cascade do |t|
     t.string "process_name"
+    t.boolean "template"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

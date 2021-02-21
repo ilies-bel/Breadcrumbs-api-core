@@ -16,8 +16,8 @@ class User < ApplicationRecord
   end
 
 
-  has_one :candidate
-  has_one :collaborator
+  has_one :candidate, :dependent => :destroy
+  has_one :collaborator, :dependent => :destroy
   has_many :contacts
   has_many :messages
 

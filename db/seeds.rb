@@ -58,7 +58,7 @@ users = User.create!([
 
 
 
-interview_processes = InterviewProcess.create!([{ process_name: 'Default' }])
+interview_processes = InterviewProcess.create!([{ process_name: 'Default', template: 'true' }])
 
 business_field = BusinessField.create!([{ field_name: "General", description: "General field" },
                                         { field_name: "Engineering", description: "Doing stuff with computers" },
@@ -82,9 +82,37 @@ interview_type = InterviewType.create!([{ business_field: business_field.first,
                                           description: "Analyze your ability to think quickly",
                                           estimated_time_length: 6000,
                                           min_time_before_next: 2500,
-                                        }])
+                                        },
+                                        { business_field: business_field.second,
+                                          title: "Technical test",
+                                          description: "A quick skill test",
+                                          estimated_time_length: 6000,
+                                          min_time_before_next: 2500,
+                                        },
+                                        { business_field: business_field.first,
+                                          title: "Interview",
+                                          description: "A talk with the CEO",
+                                          estimated_time_length: 6000,
+                                          min_time_before_next: 2500,
+                                        }
+                                       ])
 
-InterviewMilestone.create!([{ interview_process: interview_processes.first, interview_type: interview_type.first, milestone_name: 'milestone' }])
+InterviewMilestone.create!([{
+                              interview_process: interview_processes.first,
+                              interview_type: interview_type.first,
+                              milestone_name: 'Step 1'
+                            },
+                            {
+                              interview_process: interview_processes.first,
+                              interview_type: interview_type.first,
+                              milestone_name: 'Step 2'
+                            },
+                            {
+                              interview_process: interview_processes.first,
+                              interview_type: interview_type.first,
+                              milestone_name: 'Step 3'
+                            }
+                           ])
 
 candidate = Candidate.create!([
                                 {
@@ -93,6 +121,41 @@ candidate = Candidate.create!([
                                   business_title: business_titles.first,
                                 }
                               ])
+
+collaborator = Collaborator.create!([
+                                {
+                                  user: users.second,
+                                  office_id: interview_processes.first,
+                                  business_title: business_titles.first,
+                                }
+                              ])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Theme.create!([{ primary_color: '3572F1', secondary_color: 'F24E95', logo_url: 'https://upload.wikimedia.org/wikipedia/commons/0/05/PricewaterhouseCoopers_Logo.svg', splash_logo_url: 'https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2019/04/eso1644bsmall__w770.jpg' }])
 

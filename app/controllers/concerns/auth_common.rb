@@ -15,7 +15,7 @@ module AuthCommon
   end
 
   def current_candidate
-    @current_candidate || Candidate.find_by_user_id(@current_user_id)
+    @current_candidate = Candidate.find_by_user_id(@current_user_id)
   end
 
 
