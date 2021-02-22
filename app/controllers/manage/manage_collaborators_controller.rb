@@ -1,5 +1,5 @@
 class Manage::ManageCollaboratorsController < ApplicationController
-  before_action :set_collaborator, only: [ :update, :destroy]
+  before_action :set_collaborator, only: [ :update, :destroy ]
 
 
 
@@ -22,14 +22,15 @@ class Manage::ManageCollaboratorsController < ApplicationController
 
 
 
-
   def index
-    @collaborators = Collaborator.all
-    json_response(@collaborators)
+    @collaborators = Collaborator.includes(:user)
+    #@user.select(:first_name)
+    json_response(@collaborators.to_json(include: :user))
   end
 
   def show
-    json_response(@collaborator)
+
+    json_response( Collaborator.includes(:user).find(params[:id]).to_json(include: :user))
   end
 
   def update
@@ -47,10 +48,11 @@ class Manage::ManageCollaboratorsController < ApplicationController
   def collaborator_params
     # whitelist params
     params.permit(:business_title_id, :office_id )
+
   end
 
   def set_collaborator
-    @collaborator = Collaborator.find(params[:id])
+    @collaborator = Collaborator.includes(:user).find(params[:id])
   end
 
 end

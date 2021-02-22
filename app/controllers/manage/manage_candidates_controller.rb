@@ -1,5 +1,5 @@
 class Manage::ManageCandidatesController < ApplicationController
-
+  before_action :set_candidate, only: [ :update, :destroy ]
 
 
   def invite
@@ -20,11 +20,37 @@ class Manage::ManageCandidatesController < ApplicationController
   end
 
 
+  def index
+    @candidates = Candidate.includes(:user)
+    json_response(@candidates.to_json(include: :user))
+  end
+
+  def show
+    json_response( Candidate.includes(:user).find(params[:id]).to_json(include: :user))
+  end
+
+
+  def update
+    @candidate.update(candidate_params)
+  end
+
+  def destroy
+    @collaborator.destroy
+  end
+
+
+
   private
+
+
+  def set_candidate
+    @candidate = Candidate.includes(:user).find(params[:id])
+  end
+
 
   def candidate_params
     # whitelist params
-    params.permit(:business_title_id, :office_id, :process_id )
+    params.permit(:business_title_id, :interview_process_id )
   end
 
 end

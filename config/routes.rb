@@ -8,14 +8,21 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :processes do
-    resources :milestone
+    resources :milestones
   end
 
   resources :themes
 
-  resources :collaborators
+  get '/collaborators', to: 'collaborators#profile'
+  post '/collaborators', to: 'collaborators#register'
+  put '/collaborators', to: 'collaborators#update'
+
+
 
   namespace :manage do
+
+    resources :manage_users, path: 'users'
+
 
     resources :manage_candidates, path: 'candidates'
     post '/candidates/invite', to: 'manage_candidates#invite'
