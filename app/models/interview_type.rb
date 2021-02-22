@@ -1,5 +1,5 @@
 class InterviewType < ApplicationRecord
-  belongs_to :business_field
+  belongs_to :business_field, optional: true
   has_many :interview_milestones
 
   validates_presence_of :title, :description,

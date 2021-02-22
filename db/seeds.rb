@@ -3,7 +3,6 @@ users = User.create!([
                        {
                          first_name: 'candidate',
                          last_name: 'beldjilali',
-                         profile_picture: 'ilies',
                          email: 'candidate@breadcrumbs.com',
                          role: 'candidate',
                          push_notification: true,
@@ -14,7 +13,6 @@ users = User.create!([
                        {
                          first_name: 'collaborator',
                          last_name: 'beldjilali',
-                         profile_picture: 'ilies',
                          email: 'collaborator@breadcrumbs.com',
                          role: 'collaborator',
                          push_notification: true,
@@ -25,7 +23,6 @@ users = User.create!([
                        {
                          first_name: 'supervisor',
                          last_name: 'beldjilali',
-                         profile_picture: 'ilies',
                          email: 'supervisor@breadcrumbs.com',
                          role: 'supervisor',
                          push_notification: true,
@@ -35,7 +32,6 @@ users = User.create!([
                        {
                          first_name: 'ambassador',
                          last_name: 'beldjilali',
-                         profile_picture: 'ilies',
                          email: 'ambassador@breadcrumbs.com',
                          role: 'ambassador',
                          push_notification: true,
@@ -46,7 +42,6 @@ users = User.create!([
                        {
                          first_name: 'admin',
                          last_name: 'beldjilali',
-                         profile_picture: 'ilies',
                          email: 'admin@breadcrumbs.com',
                          role: 'admin',
                          push_notification: true,

@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
   before_action :set_availability, only: [:show, :update, :destroy]
-  skip_before_action :verify_authenticity_token
+
 
   # GET /availability
   def index

@@ -7,4 +7,6 @@ class Collaborator < ApplicationRecord
   has_many :appointments
 
   validates_presence_of :user
+  accepts_nested_attributes_for :user,update_only: true, allow_destroy: true
+
 end

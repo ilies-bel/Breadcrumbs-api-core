@@ -5,5 +5,7 @@ class Candidate < ApplicationRecord
 
   has_many :appointments
 
-  accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :user, allow_destroy: true, update_only: true
+
+
 end

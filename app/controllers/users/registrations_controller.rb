@@ -19,10 +19,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.role = @role
     resource.save
 
-
-    resource.role = @role
-    resource.save
-
     @business_title = @decoded_token['business_title_id']
 
     case @role

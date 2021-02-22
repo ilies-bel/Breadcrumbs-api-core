@@ -21,6 +21,10 @@ class User < ApplicationRecord
   has_many :contacts
   has_many :messages
 
+
+  accepts_nested_attributes_for :candidate
+  accepts_nested_attributes_for  :collaborator
+
   validates_presence_of :email, :first_name
 
 end
