@@ -4,7 +4,7 @@ class Manage::ManageCollaboratorsController < ApplicationController
 
 
   def invite
-    # TODO authorization collaborator
+    # TODO: authorization collaborator
     #
     @invitation_token = JWT.encode({
                                      role: 'collaborator',
@@ -13,18 +13,18 @@ class Manage::ManageCollaboratorsController < ApplicationController
                                      exp: 2.days.from_now.to_i },
                                    Rails.application.secrets.secret_key_base)
 
-    @url = request.base_url + "/users?token=" + @invitation_token
+    @url = request.base_url + "/collaborators?token=" + @invitation_token
 
-    @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first # TODO remove
+    # @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first # TODO: remove
+    # json_response(json: { "url" => @url, "decoded" => @jwt_payload})
 
-    json_response(json: { "url" => @url, "decoded" => @jwt_payload})
+    json_response(@url)
   end
 
 
 
   def index
     @collaborators = Collaborator.includes(:user)
-    #@user.select(:first_name)
     json_response(@collaborators.to_json(include: :user))
   end
 
@@ -47,7 +47,7 @@ class Manage::ManageCollaboratorsController < ApplicationController
 
   def collaborator_params
     # whitelist params
-    params.permit(:business_title_id, :office_id )
+    params.permit(:business_title_id, :office_id , :profile_picture_url  )
 
   end
 

@@ -2,19 +2,19 @@ class CollaboratorsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_collaborator
 
-  # GET /collaborator
+  # GET /collaborators
   def profile
     json_response(@collaborator.to_json(include: :user))
   end
 
-  # POST /collaborator
+  # POST /collaborators
   def register
-    @decoded_token = token_decode(params[:token])
 
+    decoded_token = token_decode(params[:token])
     @collaborator = Collaborator.create!(collaborator_params) do |c|
-      c.user.role = @decoded_token['role']
-      c.office_id = @decoded_token['office_id']
-      c.business_title_id = @decoded_token['business_title_id']
+      c.user.role = decoded_token['role']
+      c.office_id = decoded_token['office_id']
+      c.business_title_id = decoded_token['business_title_id']
     end
 
     json_response(@collaborator.to_json(include: :user), :created)

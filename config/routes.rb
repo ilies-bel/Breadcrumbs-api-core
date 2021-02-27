@@ -53,10 +53,7 @@ Rails.application.routes.draw do
 
   resources :availabilities
 
-  resource :users do
-    post '/invite_candidate', to: 'users#invite_candidate'
-
-  end
+  resource :users
 
 
 
