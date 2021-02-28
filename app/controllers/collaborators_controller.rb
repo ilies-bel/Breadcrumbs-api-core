@@ -1,5 +1,5 @@
 class CollaboratorsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :register
   before_action :set_collaborator
 
   # GET /collaborators

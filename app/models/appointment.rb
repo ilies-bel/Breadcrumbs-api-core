@@ -8,7 +8,6 @@ class Appointment < ApplicationRecord
                         :start_time ,
                         :is_confirmed ,
                         :is_completed ,
-                        :note ,
-                        :created_at ,
-                        :updated_at
+                        :note
+
 end

@@ -7,16 +7,15 @@ class Manage::ManageCandidatesController < ApplicationController
     @invitation_token = JWT.encode({
                                      role: 'candidate',
                                      business_title_id: params[:business_title_id] ,
-                                     office_id: params[:office_id] ,
-                                     process_id: params[:process_id] || 1 ,
+                                     interview_process_id: params[:interview_process_id] ,
                                      exp: 2.days.from_now.to_i },
                                    Rails.application.secrets.secret_key_base)
 
-    @url = request.base_url + "/users?token=" + @invitation_token
+    @url = request.base_url + "/candidate?token=" + @invitation_token
 
-    @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first # TODO remove
+    @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first
 
-    json_response(json: { "url" => @url, "decoded" => @jwt_payload})
+    json_response( "url" => @url, "info" => @jwt_payload)
   end
 
 

@@ -15,10 +15,11 @@ class Manage::ManageCollaboratorsController < ApplicationController
 
     @url = request.base_url + "/collaborators?token=" + @invitation_token
 
-    # @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first # TODO: remove
-    # json_response(json: { "url" => @url, "decoded" => @jwt_payload})
 
-    json_response(@url)
+    @jwt_payload = JWT.decode(@invitation_token, Rails.application.secrets.secret_key_base).first
+
+    json_response( "url" => @url, "info" => @jwt_payload)
+
   end
 
 

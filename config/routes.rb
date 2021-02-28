@@ -16,7 +16,13 @@ Rails.application.routes.draw do
   get '/collaborators', to: 'collaborators#profile'
   post '/collaborators', to: 'collaborators#register'
   put '/collaborators', to: 'collaborators#update'
+  delete '/collaborators', to: 'collaborators#delete'
 
+
+  get '/candidates', to: 'candidates#profile'
+  post '/candidates', to: 'candidates#register'
+  put '/candidates', to: 'candidates#update'
+  delete '/candidates', to: 'candidates#delete'
 
 
   namespace :manage do
