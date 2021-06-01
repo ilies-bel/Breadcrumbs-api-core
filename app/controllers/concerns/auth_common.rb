@@ -3,7 +3,7 @@ module AuthCommon
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email first_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email])
   end
 
   def authenticate_user!(_options = {})

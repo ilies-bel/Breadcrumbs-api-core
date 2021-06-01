@@ -8,13 +8,19 @@ class CandidatesController < ApplicationController
 
   # POST /candidate
   def register
-    decoded_token = token_decode(params[:token])
-    @candidate = Candidate.create!(candidate_params) do |c|
-      c.user.role = decoded_token['role']
-      c.business_title_id = decoded_token['business_title_id']
-      c.interview_process_id = decoded_token['interview_process_id']
+    begin
+      decoded_token = JWT.decode(params[:token], Rails.application.secrets.secret_key_base).first
+      @candidate = Candidate.create!(candidate_params) do |c|
+        c.user.role = decoded_token['role']
+        c.business_title_id = decoded_token['business_title_id']
+        c.interview_process_id = decoded_token['interview_process_id']
+      end
+      json_response(@candidate.to_json(include: :user), :created)
+    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError => e
+      render json: { status: 'error', code: 4000, message: e }
+
     end
-    json_response(@candidate.to_json(include: :user), :created)
+
   end
 
   def update

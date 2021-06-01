@@ -3,10 +3,11 @@ services:
   breadcrumbs-api-core-database:
     image: postgres
     environment:
-      - POSTGRES_DB=Breadcrumbs_api_core_development
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-  #  ports:
-  #    - "5432:5432"
+      - POSTGRES_DB=Breadcrumbs_api_core_development
+    ports:
+      - "6004:5432"
     restart: always
   breadcrumbs-api-core:
     build: .

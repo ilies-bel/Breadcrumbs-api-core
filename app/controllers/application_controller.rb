@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
     begin
       JWT.decode(token, Rails.application.secrets.secret_key_base).first
 
-    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
-      json_response(json: { errors: user.errors }, status: :indecipherable_data)
+    rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError => e
+      render json: { status: 'error', code: 4000, message: e }
+
     end
   end
 
